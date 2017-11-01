@@ -1,104 +1,142 @@
 import React from 'react';
-
-const SlideOne= () => {
-	let background = {
-    backgroundImage: 'url(https://images.unsplash.com/photo-1484151709479-3996843263cf?dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb&amp;ixid=dW5zcGxhc2guY29tOzs7Ozs%3D)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-		width: '600px',
-		height: '600px'
-  };
-
-  return <div style={background} className="slide"></div>;
-};
-
-const SlideTwo= () => {
-	let background = {
-    backgroundImage: 'url(https://images.unsplash.com/photo-1486829776724-8495de073f81?dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb&amp;ixid=dW5zcGxhc2guY29tOzs7Ozs%3D)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-		width: '600px',
-		height: '600px'
-  };
-
-  return <div style={background} className="slide"></div>;
-};
-
-const SlideThree= () => {
-	let background = {
-    backgroundImage: 'url(https://images.unsplash.com/photo-1496170804262-975019a5cd34?dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb&amp;ixid=dW5zcGxhc2guY29tOzs7Ozs%3D)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-		width: '600px',
-		height: '600px'
-  };
-
-  return <div style={background} className="slide"></div>;
-};
-
-const RightArrow = (props) => {
-  return (
-		<div onClick={props.nextSlide} className="nextArrow">
-      <i className="fa fa-arrow-right fa-2x" aria-hidden="true">Right</i>
-    </div>
-  );
-};
-
-const LeftArrow = (props) => {
-  return (
-		<div onClick={props.previousSlide} className="backArrow">
-      <i className="fa fa-arrow-left fa-2x" aria-hidden="true">Left</i>
-    </div>
-  );
-};
+import styles from './main.css';
 
 class Slider extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      slides: [
+      {color: 'url(https://unsplash.it/1900/1024/?image=497)',},
+      {color: 'url(https://unsplash.it/1900/1024/?image=291)',},
+      {color: 'url(https://unsplash.it/1900/1024/?image=786)',},
+      {color: 'url(https://unsplash.it/1900/1024/?image=768)',},
+      {color: 'url(https://unsplash.it/1900/1024/?image=726)',},
+      {color: 'url(https://unsplash.it/1900/1024/?image=821)',}],
+      autoplay: true,
+      active: 0
+    };
 
-		this.state = {
-			slideCount: 1,
-			intervalId : null
-		};
-
-		this.nextSlide = this.nextSlide.bind(this);
-		this.previousSlide = this.previousSlide.bind(this);
-		this.timer = this.timer.bind(this);
+    this.state.max = this.state.slides.length;
+    this.timer = this.timer.bind(this);
   }
 
-	componentDidMount(){
-		var intervalId = setInterval(this.timer, 8000);
-		// store intervalId in the state so it can be accessed later:
-		this.setState({intervalId: intervalId});
-	}
-
-	nextSlide() {
-      this.setState({ slideCount: this.state.slideCount + 1 });
+  componentDidMount() {
+    this.timer = setInterval(this.timer, 3000); 
   }
 
-  previousSlide() {
-      this.setState({ slideCount: this.state.slideCount - 1 });
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
-	timer() {
-			let self = this;
-			if(self.state.slideCount == 3){
-				self.setState({ slideCount: 1 });
-			}
-			else {
-				this.setState({ slideCount: this.state.slideCount + 1 });
-			}
+  timer() {
+    if (this.state.autoplay === true) {
+      if (this.state.active === this.state.max - 1) {
+        this.setState({
+          active: 0
+        });
+      } 
+      else {
+        this.setState({
+          active: this.state.active + 1
+        });
+      }
+
+      this.setState({
+        active: this.state.active
+      });
+    }
+  }
+
+  toggleAutoPlay(){
+    this.setState({
+      autoplay: !this.state.autoplay
+    });
+  }
+
+  nextOne(){
+    if (this.state.active < this.state.max - 1) {
+      this.setState({
+        active: this.state.active + 1
+      });
+    }
+  }
+
+  prevOne(){
+    if (this.state.active > 0) {
+      this.setState({
+        active: this.state.active - 1
+      });
+    }
+  }
+
+  dots(index, event){
+    event.preventDefault();
+    this.setState({
+      active: index
+    });
+  }
+
+  isActive(value){
+    if(this.state.active === value){
+      return 'active';
+    }
   }
 
   render() {
-    return (
-      <div className="slider">
-			{ this.state.slideCount === 1 ? <SlideOne /> : null }
-			{ this.state.slideCount === 2 ? <SlideTwo /> : null }
-			{ this.state.slideCount === 3 ? <SlideThree /> : null }
+    let transition = this.state.active * - 100;
+    let style = {
+      width: ( this.state.slides.length * 100 ) + 'vw',
+      transform: 'translateX(' + transition + 'vw)'
+    };
 
-        <RightArrow nextSlide={this.nextSlide} />
-        <LeftArrow previousSlide={this.previousSlide} />
+    let slides = this.state.slides.map((item, index) => (<div className={styles.slide} key={index} style={{backgroundImage: item.color}}></div>));
+
+    let dots = this.state.slides.map( (item, index) => (
+      <li className={this.isActive(index) + ' dots' } key={index} onClick={this.dots.bind(this, index)}>
+        <a>&#9679;</a>
+      </li>
+    ));
+
+    let playStop;
+
+    if(this.state.autoplay){
+      playStop =  <svg fill='#FFFFFF' height='24' viewBox='0 0 24 24' width='24'>
+                    <path d='M0 0h24v24H0z' fill='none'/>
+                    <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z'/>
+                  </svg>;
+    }
+    else {
+      playStop =  <svg fill='#FFFFFF' height='24' viewBox='0 0 24 24' width='24'>
+                    <path d='M0 0h24v24H0z' fill='none'/>
+                    <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z'/>
+                  </svg>;
+    }
+
+    return (
+      <div>
+        <div className={styles.slider}>
+          <div className={styles.slideWrapper} style={style}>
+            {slides}
+          </div>
+          <button className='arrows prev' onClick={this.prevOne.bind(this)} >
+            <svg fill='#FFFFFF' width='50' height='50' viewBox='0 0 24 24'>
+              <path d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/>
+              <path d='M0 0h24v24H0z' fill='none'/>
+            </svg>
+          </button>
+          <button className='arrows next' onClick={this.nextOne.bind(this)} > 
+            <svg fill='#FFFFFF' height='50' viewBox='0 0 24 24' width='50'>
+              <path d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/>
+              <path d='M0 0h24v24H0z' fill='none'/>
+            </svg>
+          </button>
+          <ul className='dots_container'>
+            {dots}
+          </ul>
+          <a className='toggle-play' onClick={this.toggleAutoPlay.bind(this)}> 
+            {playStop}
+          </a>
+        </div>
       </div>
     );
   }
@@ -106,8 +144,7 @@ class Slider extends React.Component {
 
 export default function Main() {
 	return (
-    <div>
-      <h1>Main</h1>
+    <div className={styles.container}>
 			<Slider/>
     </div>
 	);

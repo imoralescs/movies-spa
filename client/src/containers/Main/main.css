@@ -1,0 +1,23 @@
+.slider {
+	background: #000;
+  width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.sliderWrapper {
+    height: 100vh;
+    -webkit-transition: .5s all linear;
+    transition: .5s all linear;
+    will-change: transform;
+  }
+
+.slide {
+	background-size: cover;
+  background-position: center;
+	width: 100vw;
+	height: 100vh;
+  float: left;
+  background-color: transparent;
+}
