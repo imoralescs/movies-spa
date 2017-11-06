@@ -4,8 +4,8 @@ import Main from'../Main';
 import Navigation from '../../components/Navigation';
 import styles from './landing.css';
 
-export default function Landing(props) {
-	console.log(props);
+export default function Landing(/*props*/) {
+	//console.log(props);
 	return (
 		<div className={styles.container}>
 			<nav className={styles.nav}>

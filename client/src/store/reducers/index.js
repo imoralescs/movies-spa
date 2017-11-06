@@ -1,13 +1,22 @@
 import { combineReducers } from 'redux';
 import { app } from './app.js';
-import { login } from './login.js';
-import { course } from './course.js';
-import { courses } from './courses.js';
-import { categories } from './categories.js';
 
 const setSearchTerm = (state, payload) => Object.assign({}, state, {
   searchTerm: payload
 });
+
+export function now_playing(state, { type, payload = null}) {
+  state = state || [];
+  switch (type) {
+    case 'NOW_PLAYING_SUCCESS': {
+      const newState = state.concat(payload);
+      return newState;
+    }
+    default: {
+      return state;
+    }
+  }
+}
 
 function search(state, { type, payload = null}) {
   state = state || {
@@ -26,9 +35,6 @@ function search(state, { type, payload = null}) {
 
 export default combineReducers({
   app,
-  login,
-  course,
-  courses,
-  categories,
-  search
+  search,
+  now_playing
 });

@@ -1,0 +1,143 @@
+.slider {
+	background: #000;
+  width: 100vw;
+    height: 60vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.sliderWrapper {
+    height: 100vh;
+    /*-webkit-transition: .5s all linear;*/
+    /*transition: .5s all linear;*/
+    will-change: transform;
+		animation-duration: 20s;
+		animation-iteration-count: infinite;
+  	animation-name: fade;
+		z-index: -1;
+		opacity: 0;
+		visibility: hidden;
+  }
+
+.slide {
+	background-size: cover;
+  background-position: center;
+	width: 100vw;
+	height: 60vh;
+  float: left;
+  background-color: transparent;
+}
+
+.container {
+	position: relative;
+  padding: 6em 0 0;
+}
+
+.poster {
+	position: relative;
+  display: inline-block;
+  content: "";
+  width: 220px;
+  padding-top: 22.99%;
+	margin: 0 0 0 4em;
+}
+
+.poster img {
+	position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.info {
+	display: inline-block;
+	width: calc(100% - 20em);
+	vertical-align: top;
+	padding: 0 0 0 1em;
+	color: #FFF;
+}
+
+.overlay {
+	background: rgba(34,34,34,0.30);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.title {
+	font-size: 4em;
+	font-family: 'Anton', sans-serif;
+	letter-spacing: .05em;
+	color: #EDF2F4;
+}
+
+.overview {
+	font-weight: 400;
+	color: #EDF2F4;
+}
+
+.callAction {
+	margin: 1em 0;
+}
+
+.button {
+	box-shadow: 0.3em 0.3em 0 0 #D90429, inset 0.3em 0.3em 0 0 #D90429;
+    background: none;
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em 1em;
+    padding: 1em 1em;
+    font-size: .6em;
+    color: #D90429;
+    font-weight: 600;
+    cursor: pointer;
+		-webkit-transition: 0.25s;
+		transition: 0.25s;
+}
+
+.button:hover {
+	box-shadow: 0 0 0 0 #D90429, inset 6em 3.5em 0 0 #D90429;
+	color: #242423;
+	border: none;
+}
+
+.buttonSecondary {
+	box-shadow: 0.3em 0.3em 0 0 #EDF2F4, inset 0.3em 0.3em 0 0 #EDF2F4;
+		background: none;
+		border: 2px solid;
+		font: inherit;
+		line-height: 1;
+		margin: 0.5em 1em;
+		padding: 1em 1em;
+		font-size: .6em;
+		color: #EDF2F4;
+		font-weight: 600;
+		cursor: pointer;
+		-webkit-transition: 0.25s;
+		transition: 0.25s;
+}
+
+.buttonSecondary:hover {
+	box-shadow: 0 0 0 0 #EDF2F4, inset 6em 3.5em 0 0 #EDF2F4;
+	color: #242423;
+	border: none;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+		visibility: hidden;
+  }
+
+  50% {
+    opacity: 1;
+		visibility: visible;
+  }
+
+	100% {
+		opacity: 0;
+		visibility: hidden;
+  }
+}
