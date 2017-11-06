@@ -5,6 +5,19 @@ const setSearchTerm = (state, payload) => Object.assign({}, state, {
   searchTerm: payload
 });
 
+export function upcoming(state, { type, payload = null}) {
+  state = state || [];
+  switch (type) {
+    case 'UP_COMING_SUCCESS': {
+      const newState = state.concat(payload);
+      return newState;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
 export function now_playing(state, { type, payload = null}) {
   state = state || [];
   switch (type) {
@@ -36,5 +49,6 @@ function search(state, { type, payload = null}) {
 export default combineReducers({
   app,
   search,
-  now_playing
+  now_playing,
+  upcoming
 });

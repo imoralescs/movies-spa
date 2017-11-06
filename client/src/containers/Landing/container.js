@@ -19,10 +19,12 @@ function handlers(WrappedComponent) {
     constructor(props) {
       super(props);
       this.state = {
-        searchTerm: ''
+        searchTerm: '',
+        isOpen: false
       };
 
       this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
+      this.onClick = this.onClick.bind(this);
       this.goToSearch = this.goToSearch.bind(this);
     }
 
@@ -38,6 +40,13 @@ function handlers(WrappedComponent) {
       //this.props.handleSearchTermChange(event.target.value);
     }
 
+    onClick() {
+      console.log('expnd');
+      this.setState({
+        isOpen: !this.state.isOpen
+      });
+    }
+
     render() {
       return (
         <WrappedComponent
@@ -45,6 +54,7 @@ function handlers(WrappedComponent) {
           {...this.props}
           handleSearchTermChange={this.handleSearchTermChange}
           goToSearch={this.goToSearch}
+          onClick={this.onClick}
         />
       );
     }

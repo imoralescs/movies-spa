@@ -1,53 +1,56 @@
 .slider {
 	background: #000;
-  width: 100vw;
-    height: 60vh;
+	width: 100%;
+    /* height: 80vh; */
+    height: 28em;
     overflow: hidden;
     position: relative;
+    padding: 60px 0 0 0;
 }
 
 .sliderWrapper {
-    height: 100vh;
+	height: 100vh;
     /*-webkit-transition: .5s all linear;*/
     /*transition: .5s all linear;*/
     will-change: transform;
-		animation-duration: 20s;
-		animation-iteration-count: infinite;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
   	animation-name: fade;
-		z-index: -1;
-		opacity: 0;
-		visibility: hidden;
-  }
+  	z-index: -1;
+  	opacity: 0;
+  	visibility: hidden;
+}
 
 .slide {
 	background-size: cover;
-  background-position: center;
+	background-position: center;
 	width: 100vw;
-	height: 60vh;
-  float: left;
-  background-color: transparent;
+	/* height: 80vh; */
+	height: 28em;
+	float: left;
+	background-color: transparent;
 }
 
 .container {
 	position: relative;
-  padding: 6em 0 0;
+	padding: 6em 0 0;
 }
 
 .poster {
 	position: relative;
-  display: inline-block;
-  content: "";
-  width: 220px;
-  padding-top: 22.99%;
+	display: inline-block;
+	content: "";
+	width: 220px;
+	padding-top: 22.99%;
 	margin: 0 0 0 4em;
 }
 
 .poster img {
 	position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .info {
@@ -82,7 +85,7 @@
 }
 
 .button {
-	box-shadow: 0.3em 0.3em 0 0 #D90429, inset 0.3em 0.3em 0 0 #D90429;
+	box-shadow: 0.3em 0.3em 0 0 #E8293F, inset 0.3em 0.3em 0 0 #E8293F;
     background: none;
     border: 2px solid;
     font: inherit;
@@ -90,33 +93,33 @@
     margin: 0.5em 1em;
     padding: 1em 1em;
     font-size: .6em;
-    color: #D90429;
+    color: #E8293F;
     font-weight: 600;
     cursor: pointer;
-		-webkit-transition: 0.25s;
-		transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
 }
 
 .button:hover {
-	box-shadow: 0 0 0 0 #D90429, inset 6em 3.5em 0 0 #D90429;
+	box-shadow: 0 0 0 0 #E8293F, inset 6em 3.5em 0 0 #E8293F;
 	color: #242423;
 	border: none;
 }
 
 .buttonSecondary {
 	box-shadow: 0.3em 0.3em 0 0 #EDF2F4, inset 0.3em 0.3em 0 0 #EDF2F4;
-		background: none;
-		border: 2px solid;
-		font: inherit;
-		line-height: 1;
-		margin: 0.5em 1em;
-		padding: 1em 1em;
-		font-size: .6em;
-		color: #EDF2F4;
-		font-weight: 600;
-		cursor: pointer;
-		-webkit-transition: 0.25s;
-		transition: 0.25s;
+	background: none;
+	border: 2px solid;
+	font: inherit;
+	line-height: 1;
+	margin: 0.5em 1em;
+	padding: 1em 1em;
+	font-size: .6em;
+	color: #EDF2F4;
+	font-weight: 600;
+	cursor: pointer;
+	-webkit-transition: 0.25s;
+	transition: 0.25s;
 }
 
 .buttonSecondary:hover {

@@ -14,9 +14,9 @@ export default class Slider extends Component {
     this.state = {
       slides: [],
       autoplay: this.props.autoplay,
-      active: 0
+      active: 0,
+      max: 0
     };
-    this.state.max = this.state.slides.length;
     this.timer = this.timer.bind(this);
     this.toggleAutoPlay = this.toggleAutoPlay.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
@@ -32,7 +32,8 @@ export default class Slider extends Component {
   componentWillReceiveProps(newProps){
     if(this.props != newProps) {
       this.setState({
-        slides: newProps.nowPlaying
+        slides: newProps.nowPlaying,
+        max: newProps.nowPlaying.length
       });
     }
   }
@@ -100,20 +101,20 @@ export default class Slider extends Component {
       width: ( this.state.slides.length * 100 ) + 'vw',
       transform: 'translateX(' + transition + 'vw)'
     };
-    //let slides = '';
-    let dots = '';
 
     let slides;
-    this.state.slides > 0
+    this.state.slides.length > 0
     ? slides = this.props.nowPlaying.map((item, index) => (
       <Slide
         key={index}
         slideData={item} />
     ))
     : slides = 'loading';
+
+    let dots = '';
     /*
     let dots;
-    this.state.slides > 0
+    this.state.slides.length > 0
     ? dots = this.props.nowPlaying.map((item, index) => (
       <Dots
         key={index}
@@ -123,9 +124,6 @@ export default class Slider extends Component {
     ))
     : dots = '';
     */
-    if(this.state.slides.length > 0) {
-      console.log(this.state.slides);
-    }
 
     let playStop;
     this.state.autoplay

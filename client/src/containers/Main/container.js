@@ -26,6 +26,7 @@ function handlers(WrappedComponent) {
 
     componentDidMount() {
       this.props.loadNowPlaying();
+      this.props.loadUpcoming();
     }
 
     render() {
