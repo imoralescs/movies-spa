@@ -59,6 +59,7 @@
 	vertical-align: top;
 	padding: 0 0 0 1em;
 	color: #FFF;
+	text-align: left;
 }
 
 .overlay {
@@ -86,18 +87,18 @@
 
 .button {
 	box-shadow: 0.3em 0.3em 0 0 #E8293F, inset 0.3em 0.3em 0 0 #E8293F;
-    background: none;
-    border: 2px solid;
-    font: inherit;
-    line-height: 1;
-    margin: 0.5em 1em;
-    padding: 1em 1em;
-    font-size: .6em;
-    color: #E8293F;
-    font-weight: 600;
-    cursor: pointer;
-    -webkit-transition: 0.25s;
-    transition: 0.25s;
+	background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em 1em;
+  padding: 1em 1em;
+  font-size: .6em;
+  color: #E8293F;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
 }
 
 .button:hover {

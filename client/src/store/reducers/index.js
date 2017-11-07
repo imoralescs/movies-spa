@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { app } from './app.js';
 
 const setSearchTerm = (state, payload) => Object.assign({}, state, {
   searchTerm: payload
@@ -18,7 +17,7 @@ export function upcoming(state, { type, payload = null}) {
   }
 }
 
-export function now_playing(state, { type, payload = null}) {
+export function nowplaying(state, { type, payload = null}) {
   state = state || [];
   switch (type) {
     case 'NOW_PLAYING_SUCCESS': {
@@ -47,8 +46,7 @@ function search(state, { type, payload = null}) {
 
 
 export default combineReducers({
-  app,
   search,
-  now_playing,
+  nowplaying,
   upcoming
 });
