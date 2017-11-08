@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Main from'../Main';
-import Navigation from '../../components/Navigation';
+import Navigation from '../Navigation';
 import styles from './landing.css';
 
 export default function Landing(props) {

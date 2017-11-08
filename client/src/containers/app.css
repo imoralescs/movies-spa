@@ -56,7 +56,7 @@ html {
 	-webkit-font-smoothing: antialiased;
 }
 
-body {
+body, #appMountPoint {
 	font-weight: normal;
 	height: 100%;
 	margin: 0;
