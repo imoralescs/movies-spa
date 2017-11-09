@@ -19,16 +19,37 @@ function handlers(WrappedComponent) {
     constructor(props) {
       super(props);
       this.state = {
-        isOpen: false
+        isOpen: false,
+        isSticky: false
       };
 
       this.onClick = this.onClick.bind(this);
+      this.handleScroll = this.handleScroll.bind(this);
+    }
+
+    componentDidMount() {
+      window.addEventListener('scroll', () => {
+        this.handleScroll();
+      });
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener('scroll', () => {
+        this.handleScroll();
+      });
     }
 
     onClick() {
       this.setState({
         isOpen: !this.state.isOpen
       });
+    }
+
+    handleScroll() {
+      let {isSticky} = this.state;
+      if(window.scrollY > this.prev) !isSticky && this.setState({isSticky: true});
+        this.prev = window.scrollY;
+      if(window.scrollY === 0) isSticky && this.setState({isSticky: false});
     }
 
     render() {
@@ -38,6 +59,7 @@ function handlers(WrappedComponent) {
           {...this.props}
           onClick={this.onClick}
           isOpen={this.state.isOpen}
+          isSticky={this.state.isSticky}
         />
       );
     }

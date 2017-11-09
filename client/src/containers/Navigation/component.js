@@ -12,7 +12,7 @@ let NormalHeader = (props) => {
 		},
 		closed: {
 			width: 0,
-			padding: 0,
+			padding: '4px 0',
 			transition: 'width 0.75s cubic-bezier(0.000, 0.795, 0.000, 1.000)'
 		}
 	};
@@ -20,11 +20,6 @@ let NormalHeader = (props) => {
 	let textStyle = props.isOpen 
 		? baseStyles.open 
 		: baseStyles.closed;
-
-	//textStyle = Object.assign(textStyle, props.additionalStyles ? props.additionalStyles.text : {});
-	
-	//const divStyle = Object.assign({}, textStyle, baseStyles.frame, props.additionalStyles ? props.additionalStyles.frame : {});
-    //divStyle.width += baseStyles.icon.width + 5;
 
 	return(
 		<nav className={styles.nav}>
@@ -36,7 +31,60 @@ let NormalHeader = (props) => {
 					<input type='text' style={textStyle} onChange={props.handleSearchTermChange} value={props.searchTerm} placeholder='Search' />
 				</form>
 				<span onClick={() => props.onClick()}>
-					<img className={styles.icon} style={baseStyles.icon} src={search} />
+					<img className={styles.icon} src={search} />
+				</span>
+			</div>
+		</nav>
+	);
+};
+
+let StickyHeader = (props) => {
+	const baseStyles = {
+		open: {
+			width: 300,
+			padding: '4px 10px',
+			transition: 'width 0.75s cubic-bezier(0.000, 0.795, 0.000, 1.000)'
+		},
+		closed: {
+			width: 0,
+			padding: '4px 0',
+			transition: 'width 0.75s cubic-bezier(0.000, 0.795, 0.000, 1.000)'
+		}
+	};
+
+	const stickyStyles = {
+		visible: {
+			position: 'fixed',
+			top: 0,
+			left: 0,
+			right: 0,
+			width: '100%',
+			zIndex: 2
+		},
+		novisible: {
+			top: -60,
+		}
+	};
+
+	let textStyle = props.isOpen 
+		? baseStyles.open 
+		: baseStyles.closed;
+
+	let navSticky = props.isSticky
+		? stickyStyles.visible
+		: stickyStyles.novisible;
+
+	return(
+		<nav className={styles.nav} style={navSticky}>
+			<div className={styles.browser}>
+				<Link to='/search'>Browser</Link>
+			</div>
+			<div className={styles.search}>
+				<form className={styles.searchForm} onSubmit={props.goToSearch}>
+					<input type='text' style={textStyle} onChange={props.handleSearchTermChange} value={props.searchTerm} placeholder='Search' />
+				</form>
+				<span onClick={() => props.onClick()}>
+					<img className={styles.icon} src={search} />
 				</span>
 			</div>
 		</nav>
@@ -45,6 +93,9 @@ let NormalHeader = (props) => {
 
 export default function Navigation(props) {
 	return (
-		<NormalHeader onClick={props.onClick} isOpen={props.isOpen} />
+		<div>
+			<NormalHeader onClick={props.onClick} isOpen={props.isOpen} />
+			<StickyHeader onClick={props.onClick} isOpen={props.isOpen} isSticky={props.isSticky} />
+		</div>
 	);
 }
