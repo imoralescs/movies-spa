@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './navigation.css';
 import search from '../../assets/img/svg/search.svg';
-
+/*
 let NormalHeader = (props) => {
 	const baseStyles = {
 		open: {
@@ -17,8 +17,8 @@ let NormalHeader = (props) => {
 		}
 	};
 
-	let textStyle = props.isOpen 
-		? baseStyles.open 
+	let textStyle = props.isOpen
+		? baseStyles.open
 		: baseStyles.closed;
 
 	return(
@@ -37,7 +37,7 @@ let NormalHeader = (props) => {
 		</nav>
 	);
 };
-
+*/
 let StickyHeader = (props) => {
 	const baseStyles = {
 		open: {
@@ -62,12 +62,12 @@ let StickyHeader = (props) => {
 			zIndex: 2
 		},
 		novisible: {
-			top: -60,
+			/*top: -60,*/
 		}
 	};
 
-	let textStyle = props.isOpen 
-		? baseStyles.open 
+	let textStyle = props.isOpen
+		? baseStyles.open
 		: baseStyles.closed;
 
 	let navSticky = props.isSticky
@@ -94,7 +94,6 @@ let StickyHeader = (props) => {
 export default function Navigation(props) {
 	return (
 		<div>
-			<NormalHeader onClick={props.onClick} isOpen={props.isOpen} />
 			<StickyHeader onClick={props.onClick} isOpen={props.isOpen} isSticky={props.isSticky} />
 		</div>
 	);

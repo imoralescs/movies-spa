@@ -47,7 +47,7 @@ function handlers(WrappedComponent) {
 
     handleScroll() {
       let {isSticky} = this.state;
-      if(window.scrollY > this.prev) !isSticky && this.setState({isSticky: true});
+      if(window.scrollY + 59 > this.prev) !isSticky && this.setState({isSticky: true});
         this.prev = window.scrollY;
       if(window.scrollY === 0) isSticky && this.setState({isSticky: false});
     }
