@@ -8,7 +8,8 @@
     "jest": true
   },
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
   "rules": {
     "react/prop-types": ["off"],
@@ -18,5 +19,9 @@
     "no-console": ["warn", { "allow": ["info", "error"] }],
     "arrow-parens": ["error", "always"]
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"]
+  "extends": [
+    "eslint:recommended", 
+    "plugin:react/recommended",
+    "plugin:flowtype/recommended"
+  ]
 }

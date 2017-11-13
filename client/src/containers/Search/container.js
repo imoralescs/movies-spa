@@ -32,7 +32,7 @@ function handlers(WrappedComponent) {
           self.setState({ movies: response.data.results});
         })
         .catch(function (error) {
-          console.log(error);
+          return error;
         });
     }
 
